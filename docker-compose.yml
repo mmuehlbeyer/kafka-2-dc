@@ -1,0 +1,98 @@
+---
+version: '3'
+services:
+ zookeeper01:
+   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   restart: always
+   container_name: zookeeper01
+   ports:
+     - 2181:2181
+     - 2881:2881
+     - 3881:3881
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2181
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_SERVER_ID: 1
+     ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
+ zookeeper02:
+   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   restart: always
+   container_name: zookeeper02
+   ports:
+     - 2182:2182
+     - 2882:2882
+     - 3882:3882
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2182
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_SERVER_ID: 2
+     ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
+     #server.1=zookeeper01:2881:3881
+     #server.2=zookeeper02:2882:3882   
+ zookeeper03:
+   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   restart: always
+   container_name: zookeeper03
+   ports:
+     - 2183:2183
+     - 2883:2883
+     - 3883:3883
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2183
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_SERVER_ID: 3
+     ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
+     #server.1=zookeeper01:2881:3881
+     #server.2=zookeeper02:2882:3882 
+ zookeeper04:
+   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   restart: always
+   container_name: zookeeper04
+   ports:
+     - 2184:2184
+     - 2884:2884
+     - 3884:3884
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2184
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_SERVER_ID: 4
+     ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
+     #server.1=zookeeper01:2881:3881
+     #server.2=zookeeper02:2882:3882   
+ zookeeper05:
+   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   restart: always
+   container_name: zookeeper05
+   ports:
+     - 2185:2185
+     - 2885:2885
+     - 3885:3885
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2185
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_SERVER_ID: 5
+     ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
+     #server.1=zookeeper01:2881:3881
+     #server.2=zookeeper02:2882:3882   
+ zookeeper06:
+   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   restart: always
+   container_name: zookeeper06
+   ports:
+     - 2186:2186
+     - 2886:2886
+     - 3886:3886
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2186
+     ZOOKEEPER_TICK_TIME: 2000
+     ZOOKEEPER_SERVER_ID: 6
+     ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
+     #server.1=zookeeper01:2881:3881
+     #server.2=zookeeper02:2882:3882  
+ 
