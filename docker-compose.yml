@@ -2,13 +2,11 @@
 version: '3'
 services:
  zookeeper01:
-   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   image: confluentinc/cp-zookeeper:latest
    restart: always
    container_name: zookeeper01
    ports:
      - 2181:2181
-     - 2881:2881
-     - 3881:3881
    environment:
      ZOOKEEPER_CLIENT_PORT: 2181
      ZOOKEEPER_TICK_TIME: 2000
@@ -16,83 +14,122 @@ services:
      ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
      ZOOKEEPER_GROUPS: 1:2:3;4:5:6
  zookeeper02:
-   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   image: confluentinc/cp-zookeeper:latest
    restart: always
    container_name: zookeeper02
    ports:
      - 2182:2182
-     - 2882:2882
-     - 3882:3882
    environment:
      ZOOKEEPER_CLIENT_PORT: 2182
      ZOOKEEPER_TICK_TIME: 2000
      ZOOKEEPER_SERVER_ID: 2
      ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
-     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
-     #server.1=zookeeper01:2881:3881
-     #server.2=zookeeper02:2882:3882   
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6  
  zookeeper03:
-   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   image: confluentinc/cp-zookeeper:latest
    restart: always
    container_name: zookeeper03
    ports:
      - 2183:2183
-     - 2883:2883
-     - 3883:3883
    environment:
      ZOOKEEPER_CLIENT_PORT: 2183
      ZOOKEEPER_TICK_TIME: 2000
      ZOOKEEPER_SERVER_ID: 3
      ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
      ZOOKEEPER_GROUPS: 1:2:3;4:5:6
-     #server.1=zookeeper01:2881:3881
-     #server.2=zookeeper02:2882:3882 
  zookeeper04:
-   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   image: confluentinc/cp-zookeeper:latest
    restart: always
    container_name: zookeeper04
    ports:
      - 2184:2184
-     - 2884:2884
-     - 3884:3884
    environment:
      ZOOKEEPER_CLIENT_PORT: 2184
      ZOOKEEPER_TICK_TIME: 2000
      ZOOKEEPER_SERVER_ID: 4
      ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
-     ZOOKEEPER_GROUPS: 1:2:3;4:5:6
-     #server.1=zookeeper01:2881:3881
-     #server.2=zookeeper02:2882:3882   
+     ZOOKEEPER_GROUPS: 1:2:3;4:5:6  
  zookeeper05:
-   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   image: confluentinc/cp-zookeeper:latest
    restart: always
    container_name: zookeeper05
    ports:
      - 2185:2185
-     - 2885:2885
-     - 3885:3885
    environment:
      ZOOKEEPER_CLIENT_PORT: 2185
      ZOOKEEPER_TICK_TIME: 2000
      ZOOKEEPER_SERVER_ID: 5
      ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
      ZOOKEEPER_GROUPS: 1:2:3;4:5:6
-     #server.1=zookeeper01:2881:3881
-     #server.2=zookeeper02:2882:3882   
  zookeeper06:
-   image: confluentinc/cp-zookeeper:7.0.0-1-ubi8
+   image: confluentinc/cp-zookeeper:latest
    restart: always
    container_name: zookeeper06
    ports:
      - 2186:2186
-     - 2886:2886
-     - 3886:3886
    environment:
      ZOOKEEPER_CLIENT_PORT: 2186
      ZOOKEEPER_TICK_TIME: 2000
      ZOOKEEPER_SERVER_ID: 6
      ZOOKEEPER_SERVERS: zookeeper01:2881:3881;zookeeper02:2882:3882;zookeeper03:2883:3883;zookeeper04:2884:3884;zookeeper05:2885:3885;zookeeper06:2886:3886
      ZOOKEEPER_GROUPS: 1:2:3;4:5:6
-     #server.1=zookeeper01:2881:3881
-     #server.2=zookeeper02:2882:3882  
- 
+ kafka01:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    container_name: kafka01
+    ports:
+      - 29091:29091
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_BROKER_RACK: A
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 4
+      KAFKA_MIN_INSYNC_REPLICAS: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181,zookeeper02:2182,zookeeper03:2183,zookeeper04:2184,zookeeper05:2185,zookeeper06:2186
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka01:9091,PLAINTEXT_HOST://localhost:29091
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+ kafka02:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    container_name: kafka02
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_BROKER_RACK: A
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 4
+      KAFKA_MIN_INSYNC_REPLICAS: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181,zookeeper02:2182,zookeeper03:2183,zookeeper04:2184,zookeeper05:2185,zookeeper06:2186
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka02:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+ kafka03:      
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    container_name: kafka03
+    ports:
+      - 29093:29093
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_BROKER_RACK: B
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 4
+      KAFKA_MIN_INSYNC_REPLICAS: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181,zookeeper02:2182,zookeeper03:2183,zookeeper04:2184,zookeeper05:2185,zookeeper06:2186
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka03:9093,PLAINTEXT_HOST://localhost:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT 
+ kafka04:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    container_name: kafka04
+    ports:
+      - 29094:29094
+    environment:
+      KAFKA_BROKER_ID: 4
+      KAFKA_BROKER_RACK: B
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 4
+      KAFKA_MIN_INSYNC_REPLICAS: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper01:2181,zookeeper02:2182,zookeeper03:2183,zookeeper04:2184,zookeeper05:2185,zookeeper06:2186
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka04:9094,PLAINTEXT_HOST://localhost:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
