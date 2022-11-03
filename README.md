@@ -15,13 +15,13 @@ inspired by https://github.com/1123/Kafka-2DC-HA-Demo
 
 1. Startup the whole stack with docker-compose (with the  docker-compose.yml file, we will use docker-compose-degraded.yml later)
 
-`docker-compose up -d zookeeper01 zookeeper02 zookeeper03 zookeeper04 zookeeper05 zookeeper06`
+    1. `docker-compose up -d zookeeper01 zookeeper02 zookeeper03 zookeeper04 zookeeper05 zookeeper06`
 
+ 
+   wait a little to get all the processes and services startetd properly
+   check the status of the containers with
 
-wait a little to get all the processes and services startetd properly
-check the status of the containers with
-
-`docker-compose ps`
+    1. `docker-compose ps`
 
 and check the logs if needed with
 docker logs $containername
