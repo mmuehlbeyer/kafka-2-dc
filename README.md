@@ -28,11 +28,11 @@ docker logs $containername
 
 2. check the zookeeper status 
 
-`./check-zookeeper.sh`
+    1. `./check-zookeeper.sh`
 
-`./check-zookeeper.sh | grep leader`
+    1. `./check-zookeeper.sh | grep leader`
 
-`./check-zookeeper.sh | grep follower`
+    1. `./check-zookeeper.sh | grep follower`
 
 
 all zookeeper should be running, and there is exactly one leader and 5 followers. 
@@ -40,9 +40,9 @@ all zookeeper should be running, and there is exactly one leader and 5 followers
 
 3. kill zookeeper01 and zookeeper04 to simulate a machine failure
 
-`docker-compose kill zookeeper01` 
+    1. `docker-compose kill zookeeper01` 
 
-`docker-compose kill zookeeper04`
+    1. `docker-compose kill zookeeper04`
 
 check the zookeeper cluster status and see that there are 4 zookeeper running, exactly one leader and 3 followers. 
 
