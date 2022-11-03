@@ -66,5 +66,5 @@ the cluster is still operational, as it tolerates one outage per zookeeper group
 
 6. start a sample producer and a sample consumer application in two more terminal windows. 
    producer is configured with the acks=all setting. This will create the topics test and __consumer_offsets.
-	1. ./run-producer.sh`
+	1. `./run-producer.sh`
 	1. `./run-consumer.sh`
