@@ -50,16 +50,16 @@ the cluster is still operational, as it tolerates one outage per zookeeper group
 
 4. start zookeeper01 and zookeeper04 again, cluster should be back in normal state
 
-`docker-compose start zookeeper01`
+    1. `docker-compose start zookeeper01`
 
-`docker-compose start zookeeper04`
+    1. `docker-compose start zookeeper04`
 
 
 5. Start the Kafka brokers
 
     1. `docker-compose up -d kafka01 kafka02 kafka03 kafka04`
 
-check if everything is fine with
+    check if everything is fine with
 
 	1. `docker-compose ps`
 
