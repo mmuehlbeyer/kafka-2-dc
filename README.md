@@ -57,14 +57,14 @@ the cluster is still operational, as it tolerates one outage per zookeeper group
 
 5. Start the Kafka brokers
 
-  `docker-compose up -d kafka01 kafka02 kafka03 kafka04`
+    1. `docker-compose up -d kafka01 kafka02 kafka03 kafka04`
 
 check if everything is fine with
 
-`docker-compose ps`
+	1. `docker-compose ps`
 
 
 6. start a sample producer and a sample consumer application in two more terminal windows. 
    producer is configured with the acks=all setting. This will create the topics test and __consumer_offsets.
-	1. `./run-producer.sh`
+	1. ./run-producer.sh`
 	1. `./run-consumer.sh`
