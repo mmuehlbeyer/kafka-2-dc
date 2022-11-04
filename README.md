@@ -2,6 +2,7 @@
 
 kafka multi dc example with docker-compose 
 inspired by https://github.com/1123/Kafka-2DC-HA-Demo
+credits to https://github.com/1123
 
 ## Prerequisites
 
@@ -133,4 +134,3 @@ the cluster is still operational, as it tolerates one outage per zookeeper group
 18. stop all once finished by
     1. `docker-compose down`
 
-    
