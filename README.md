@@ -9,6 +9,8 @@ credits to https://github.com/1123
 * A recent version of Confluent Platform installed
 * Linux or MacOS operating system 
 * bash
+* docker-compose
+* access to docker hub
 
 
 
