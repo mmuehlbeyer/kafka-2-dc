@@ -75,8 +75,6 @@ services:
      ZOOKEEPER_GROUPS: 1:2:3;4:5:6
  kafka01:
     image: confluentinc/cp-kafka:latest
-    depends_on: 
-      - zookeeper01
     restart: always
     container_name: kafka01
     ports:
